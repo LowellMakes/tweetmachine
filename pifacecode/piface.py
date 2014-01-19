@@ -15,7 +15,7 @@ def idle_state():
     piface.digital_write(5, 0)
     piface.digital_write(6, 0)
     piface.digital_write(7, 0)
-    time.sleep(1)
+    time.sleep(.2)
 
 
 def snd_b():
@@ -23,37 +23,37 @@ def snd_b():
     piface.digital_write(3, 1)
     piface.digital_write(6, 1)
     piface.digital_write(7, 1)
-    time.sleep(1)
+    time.sleep(.2)
 
 def snd_d():
     piface.digital_write(1,1)
     piface.digital_write(5,1)
-    time.sleep(1)
+    time.sleep(.2)
 
 def snd_c():
     piface.digital_write(1,1)
     piface.digital_write(3,1)
     piface.digital_write(7,1)
-    time.sleep(1)
+    time.sleep(.2)
 
 def snd_three():
     piface.digital_write(0, 1)
     piface.digital_write(5, 1)
     piface.digital_write(6, 1)
-    time.sleep(1)
+    time.sleep(.2)
 
 def snd_five():
     piface.digital_write(3, 1)
     piface.digital_write(5, 1)
     piface.digital_write(7, 1)
-    time.sleep(1)
+    time.sleep(.2)
 
 def test():
     for i in range(0,8):
         piface.digital_write(i,0)
-        time.sleep(1)
+        time.sleep(.2)
         piface.digital_write(i,1)
-        time.sleep(1)
+        time.sleep(.2)
 
 def main():
     piface.init()
