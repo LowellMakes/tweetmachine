@@ -10,7 +10,6 @@ if [ -n "$1" ] ;then
 else
 	number=$gennumber
 fi
-#echo "gennumber = $gennumber"
 echo "number = $number"
 
 echo "setting COUNTER = 0"
@@ -18,7 +17,6 @@ COUNTER=0
 
 gettweet(){
 	pulltweet=$($ttytter -runcommand="/replies" |tail -n1)
-	echo $($ttytter -runcommand="/replies")
 	tweet=$pulltweet
 	name=$(echo $tweet|awk -F '[<|>]' '{print $2}')
 	tnumber=$(echo $tweet|grep -Eo '[0-9]{4}')
@@ -46,10 +44,11 @@ while [ $COUNTER -lt "4" ]; do
 			elif [[ $alreadytweeted = "0" ]] && [[ $text = "1" ]]; then
 				echo "@$name tweeted the correct number $tnumber"
 				echo "dispense toy"
-				python /home/pi/tweetmachine/pifacecode/piface.py -s d5
-				$ttytter -runcommand="Congrats to @$name for his free tweetmachine prize!"
+				python /home/pi/tweetmachine/pifacecode/piface.py -s b5
 				echo "$(date) $name" >> $log
 				echo "$name" >> $ignore
+                sleep 15
+				$ttytter -runcommand="Congrats to @$name for their free tweetmachine prize!"
 				exit 0
 			fi
 		fi
