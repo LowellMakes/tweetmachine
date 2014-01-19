@@ -3,7 +3,7 @@
 log="twitterlog.txt"
 ignore="twitterignorelist.txt"
 gennumber=$(seq 1000 9999 | sort -R | head -1)
-ttytter="/home/leftyfb/ttytter"
+ttytter="/home/pi/ttytter"
 
 if [ -n "$1" ] ;then
 	number=$1
@@ -22,8 +22,9 @@ gettweet(){
 	tweet=$pulltweet
 	name=$(echo $tweet|awk -F '[<|>]' '{print $2}')
 	tnumber=$(echo $tweet|grep -Eo '[0-9]{4}')
+	text=$(echo $tweet|grep -Eo 'lowellmakes'|wc -l)
 	alreadytweeted=$(grep ^$name$ $ignore|wc -l)
-	sleep 30
+	sleep 5
 }
 
 while [ $COUNTER -lt "4" ]; do
@@ -39,13 +40,14 @@ while [ $COUNTER -lt "4" ]; do
 		fi
 		if [ "$number" = "$tnumber" ];then
 			if [ $alreadytweeted = "1" ]; then
-				$ttytter -runcommand="@$name Sorry, but you already got a prize."
+			#	$ttytter -runcommand="@$name Sorry, but you already got a prize."
 				echo "tweeted back, $name already tweeted"
 				exit 0
-			elif [ $alreadytweeted = "0" ]; then
+			elif [[ $alreadytweeted = "0" ]] && [[ $text = "1" ]]; then
 				echo "@$name tweeted the correct number $tnumber"
-				$ttytter -runcommand="Congrats to @$name for his free tweetmachine prize!"
 				echo "dispense toy"
+				python /home/pi/tweetmachine/pifacecode/piface.py -s d5
+				$ttytter -runcommand="Congrats to @$name for his free tweetmachine prize!"
 				echo "$(date) $name" >> $log
 				echo "$name" >> $ignore
 				exit 0
