@@ -5,7 +5,7 @@ Tweet Vending machine
 
 ##TODO
 
- - [_] Control button panel
+ - [✓] Control button panel
  - [_] Insert pi inbetween panel & control board
  - [_] Add/control LCD display (external)
  - [_] Talk to database for member $$ account
