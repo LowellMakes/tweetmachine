@@ -9,7 +9,7 @@ tweetmachine
  - Vending machine (unknown model at the moment)
  - LCD (model and extact purpose TBD)
  - 2x MCP23017 for reading from vending machine keypad and sending signals to vending machine - http://www.adafruit.com/products/732
- - ttytter: http://www.floodgap.com/software/ttytter/
+ - ttytter -  http://www.floodgap.com/software/ttytter/
  - Twitter API key for ttytter http://www.floodgap.com/software/ttytter/#ba
 
 Tweet Vending machine
