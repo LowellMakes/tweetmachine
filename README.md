@@ -5,11 +5,11 @@ tweetmachine
  These scripts will enable a snack vending machine donated to Lowell Makes (lowellmakes.com) to serve up snacks, Arduino's, Raspberry Pi's and other widgets to the Lowell Makes members via the local keypad or by sending out a tweet.
  
 ## Requirements
- - Raspberry Pi
+ - Raspberry Pi (http://www.adafruit.com/products/998)
  - Vending machine (unknown model at the moment)
  - ttytter: http://www.floodgap.com/software/ttytter/
  - LCD (model and extact purpose TBD)
- - 2x MCP23017 for reading from vending machine keypad and sending signals to vending machine
+ - 2x MCP23017 (http://www.adafruit.com/products/732) for reading from vending machine keypad and sending signals to vending machine
 
 Tweet Vending machine
 
