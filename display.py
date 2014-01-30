@@ -39,7 +39,7 @@ def main():
         graphrect.centerx = 310
         screen.blit(graph, graphrect)
         pygame.display.flip()
-        print cmd
+        cmd ="./tweetmachine.sh "+number
         feedmonitor = subprocess.Popen(['su','pi','-c',cmd])
         time.sleep(30)
         feedmonitor.kill()
