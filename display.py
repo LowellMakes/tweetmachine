@@ -2,6 +2,8 @@ from random import randint
 import pygame
 import subprocess
 import time
+from optparse import OptionParser
+
 def displayText(text, size, line, color, clearScreen):
     if clearScreen:
         screen.fill((0, 0, 0))
@@ -10,14 +12,39 @@ def displayText(text, size, line, color, clearScreen):
         textRotated = pygame.transform.rotate(text, 0)
         textpos = textRotated.get_rect()
         textpos.centery = 90
-        if line == 1:
-            textpos.top = 0
-            textpos.centerx = 310
-            screen.blit(textRotated,textpos)
-        elif line == 2:
-            textpos.centerx = 40
-            screen.blit(textRotated,textpos)
+      ##  if line == 1:
+        textpos.top = line
+        textpos.centerx = 310
+        screen.blit(textRotated,textpos)
+       ## elif line == 2:
+       ##     textpos.centerx = 40
+       ##     screen.blit(textRotated,textpos)
 
+def displayLogo():
+    graph2 = pygame.image.load("logo.png")
+    graph2 = pygame.transform.scale(graph2,(600,400))
+    graph2rect = graph2.get_rect()
+    graph2rect.top = 0
+    graph2rect.centerx = 310
+    screen.blit(graph2,graph2rect)
+    pygame.display.flip()
+
+def displayTwitter():
+    number = str(randint(1000,9999))
+    text = "tweet @Makesbot lowellmakes " + number
+    displayText(text, 50, 1, (200,200,1), True )
+    graph = pygame.image.load("testimg.jpg")
+    graph = pygame.transform.rotate(graph, 0)
+    graphrect = graph.get_rect()
+    graphrect.top = 40
+    graphrect.centerx = 310
+    screen.blit(graph, graphrect)
+    pygame.display.flip()
+    cmd ="./tweetmachine.sh "+number
+    feedmonitor = subprocess.Popen(['su','pi','-c',cmd])
+    feedmonitor.wait()
+    screen.fill((0,0,0))
+    pygame.display.flip()
 
 def main():
     global screen
@@ -25,24 +52,35 @@ def main():
     size = width, height = 600, 400
     screen = pygame.display.set_mode(size)
     pygame.mouse.set_visible(0)
-    while(True):
-        number = str(randint(1000,9999))
-        text = "tweet @Makesbot lowellmakes " + number
-        displayText(text, 50, 1, (200,200,1), True )
-       ## pygame.display.flip()
-       ## time.sleep(1)
 
-        graph = pygame.image.load("testimg.jpg")
-        graph = pygame.transform.rotate(graph, 0)
-        graphrect = graph.get_rect()
-        graphrect.top = 40
-        graphrect.centerx = 310
-        screen.blit(graph, graphrect)
-        pygame.display.flip()
-        cmd ="./tweetmachine.sh "+number
-        feedmonitor = subprocess.Popen(['su','pi','-c',cmd])
-        time.sleep(30)
-        feedmonitor.kill()
+    parser = OptionParser()
+    parser.add_option("-t", "--twitter", dest="twitter", action="store_true",\
+default=False, help= "start monitoring twitter feed")
+    parser.add_option("-l", "--logo", dest="logo", action ="store_true",\
+default=False, help= "display LowellMakes Logo")
+    parser.add_option("-w", "--write",dest="text", default ='', help = "display\
+text on the screen")
+    parser.add_option("-a", "--auto", dest="loop", default =False, action ="store_true",\
+help = "runs a loop, accepts input from the std_in")
+    (options,args)=parser.parse_args()
 
+    if(options.twitter == True):
+        displayTwitter()
+    elif(options.logo == True):
+        displayLogo()
+    elif(not(options.text is '')):
+        displayText(options.text, 100, 30, (200,200,1), True )
+    elif(options.loop == True):
+        end = True
+        while(end):
+            usr_input=raw_input("enter choice l=logo,t=twitter,e=exit")
+            if usr_input is "t":
+                displayTwitter()
+            elif usr_input is "l":
+                displayLogo()
+            elif usr_input is "e":
+                break;
+            time.sleep(1)
+    time.sleep(1)
 if __name__ == '__main__':
     main()
