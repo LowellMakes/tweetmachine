@@ -7,6 +7,9 @@ import time
 import pifacedigitalio as piface
 from optparse import OptionParser
 
+
+logo_path = '~/home/pi/tweetmachine/'
+
 def displayText(text, size, line, color, clearScreen):
     if clearScreen:
         screen.fill((0, 0, 0))
@@ -24,7 +27,8 @@ def displayText(text, size, line, color, clearScreen):
        ##     screen.blit(textRotated,textpos)
 
 def displayLogo():
-    graph2 = pygame.image.load("logo.png")
+    g2path = os.path.join([logo_path,"logo.png"])
+    graph2 = pygame.image.load(g2path)
     graph2 = pygame.transform.scale(graph2,(600,400))
     graph2rect = graph2.get_rect()
     graph2rect.top = 0
@@ -36,7 +40,8 @@ def displayTwitter():
     number = str(randint(1000,9999))
     text = "tweet @Makesbot lowellmakes " + number
     displayText(text, 50, 1, (200,200,1), True )
-    graph = pygame.image.load("testimg.jpg")
+    gpath = os.path.join([logo_path,"testimg.jpg"]
+    graph = pygame.image.load(gpath)
     graph = pygame.transform.rotate(graph, 0)
     graphrect = graph.get_rect()
     graphrect.top = 40
@@ -53,6 +58,10 @@ def main():
     piface.init()
     global screen
     pygame.init()
+    if (not os.path.isdir(logo_path)):
+        print "ERROR: tweetmachine dir not found in"
+        print logo_path
+        sys.exit(2)
     size = width, height = 600, 400
     screen = pygame.display.set_mode(size)
     pygame.mouse.set_visible(0)
