@@ -1,5 +1,6 @@
 #!/usr/bin/python
 import os
+import sys
 from random import randint
 import pygame
 import subprocess
@@ -8,7 +9,7 @@ import pifacedigitalio as piface
 from optparse import OptionParser
 
 
-logo_path = '~/home/pi/tweetmachine/'
+logo_path = '/home/pi/tweetmachine'
 
 def displayText(text, size, line, color, clearScreen):
     if clearScreen:
