@@ -1,7 +1,8 @@
 #!/bin/bash
 
-log="twitterlog.txt"
-ignore="twitterignorelist.txt"
+maindir=/home/pi/tweetmachine
+log="$maindir/twitterlog.txt"
+ignore="$maindir/twitterignorelist.txt"
 gennumber=$(seq 1000 9999 | sort -R | head -1)
 ttytter="/home/pi/ttytter"
 
@@ -44,7 +45,7 @@ while [ $COUNTER -lt "4" ]; do
 			elif [[ $alreadytweeted = "0" ]] && [[ $text = "1" ]]; then
 				echo "@$name tweeted the correct number $tnumber"
 				echo "dispense toy"
-				python /home/pi/tweetmachine/pifacecode/piface.py -s b5
+				python $maindir/pifacecode/piface.py -s b5
 				echo "$(date) $name" >> $log
 				echo "$name" >> $ignore
                 sleep 10
