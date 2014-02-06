@@ -40,7 +40,7 @@ def displayTwitter():
     number = str(randint(1000,9999))
     text = "tweet @Makesbot lowellmakes " + number
     displayText(text, 50, 1, (200,200,1), True )
-    gpath = os.path.join([logo_path,"testimg.jpg"]
+    gpath = os.path.join([logo_path,"testimg.jpg"])
     graph = pygame.image.load(gpath)
     graph = pygame.transform.rotate(graph, 0)
     graphrect = graph.get_rect()
