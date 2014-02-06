@@ -1,7 +1,10 @@
+#!/usr/bin/python
+
 from random import randint
 import pygame
 import subprocess
 import time
+import pifacedigitalio as piface
 from optparse import OptionParser
 
 def displayText(text, size, line, color, clearScreen):
@@ -47,6 +50,7 @@ def displayTwitter():
     pygame.display.flip()
 
 def main():
+    piface.init()
     global screen
     pygame.init()
     size = width, height = 600, 400
