@@ -77,7 +77,7 @@ help = "runs a loop, accepts input from the std_in")
     elif(options.loop == True):
         end = True
         while(end):
-            usr_input=raw_input("enter choice l=logo,t=twitter,e=exit")
+            usr_input=raw_input("enter choice l=logo,t=twitter,e=exit\n")
             if usr_input is "t":
                 displayTwitter()
             elif usr_input is "l":
