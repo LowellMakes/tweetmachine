@@ -76,6 +76,7 @@ default=False, help= "display LowellMakes Logo")
 text on the screen")
     parser.add_option("-a", "--auto", dest="loop", default =False, action ="store_true",\
 help = "runs a loop, accepts input from the std_in")
+    parser.add_option("-b", "--btn", dest="btn", default =False, action ="store_true", help = "polls the coin return button")
     (options,args)=parser.parse_args()
 
     if(options.twitter == True):
@@ -84,6 +85,13 @@ help = "runs a loop, accepts input from the std_in")
         displayLogo()
     elif(not(options.text is '')):
         displayText(options.text, 100, 30, (200,200,1), True )
+    elif(options.btn == True):
+        while(True):
+            if piface.digital_read(0):
+                displayTwitter()
+                displayLogo()
+            elif piface.digital_read(2):
+                break;
     elif(options.loop == True):
         end = True
         while(end):
