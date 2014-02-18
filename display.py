@@ -9,7 +9,7 @@ import pifacedigitalio as piface
 from optparse import OptionParser
 
 
-logo_path = '/home/pi/tweetmachine'
+logo_path = '/home/pi/tweetmachine/'
 
 def displayText(text, size, line, color, clearScreen):
     if clearScreen:
@@ -28,7 +28,7 @@ def displayText(text, size, line, color, clearScreen):
        ##     screen.blit(textRotated,textpos)
 
 def displayLogo():
-    g2path = os.path.join([logo_path,"logo.png"])
+    g2path = logo_path + "logo.png"
     graph2 = pygame.image.load(g2path)
     graph2 = pygame.transform.scale(graph2,(600,400))
     graph2rect = graph2.get_rect()
@@ -41,7 +41,7 @@ def displayTwitter():
     number = str(randint(1000,9999))
     text = "tweet @Makesbot lowellmakes " + number
     displayText(text, 50, 1, (200,200,1), True )
-    gpath = os.path.join([logo_path,"testimg.jpg"])
+    gpath = logo_path+"testimg.jpg"
     graph = pygame.image.load(gpath)
     graph = pygame.transform.rotate(graph, 0)
     graphrect = graph.get_rect()
