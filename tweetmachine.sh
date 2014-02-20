@@ -21,7 +21,7 @@ gettweet(){
 	tweet=$pulltweet
 	name=$(echo $tweet|awk -F '[<|>]' '{print $2}')
 	tnumber=$(echo $tweet|grep -Eo '[0-9]{4}')
-	text=$(echo $tweet|grep -Eo 'lowellmakes'|wc -l)
+	text=$(echo $tweet|grep -Eio 'lowellmakes'|wc -l)
 	alreadytweeted=$(grep ^$name$ $ignore|wc -l)
 	sleep 2
 }
@@ -48,7 +48,7 @@ while [ $COUNTER -lt "4" ]; do
 				python $maindir/pifacecode/piface.py -s b5
 				echo "$(date) $name" >> $log
 				echo "$name" >> $ignore
-                sleep 10
+                #sleep 10
 				$ttytter -runcommand="Congrats to @$name for their free tweetmachine prize!"
 				exit 0
 			fi
