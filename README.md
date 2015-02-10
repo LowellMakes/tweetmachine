@@ -18,10 +18,10 @@ Tweet Vending machine
 
  - [✓] Control vending machine button pad
  - [_] Add button to initiate 
- - [_] Control vending machine LCD display
- - [_] Insert pi inbetween panel & control board
- - [_] Add/control external LCD display
- - [_] Add/control LCD display (external)
+ - [✓] Control vending machine LCD display
+ - [✓] Insert pi inbetween panel & control board
+ - [✓] Add/control external LCD display
+ - [✓] Add/control LCD display (external)
  - [_] Talk to database for member $$ account
  - [_] Talk to database for list of items & cost
  - [_] Talk to paypal API
