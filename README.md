@@ -17,7 +17,7 @@ Tweet Vending machine
 ##TODO
 
  - [✓] Control vending machine button pad
- - [_] Add button to initiate 
+ - [✓] Add button to initiate 
  - [✓] Control vending machine LCD display
  - [✓] Insert pi inbetween panel & control board
  - [✓] Add/control external LCD display
